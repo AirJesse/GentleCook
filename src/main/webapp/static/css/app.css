@@ -44,22 +44,27 @@ body {
 
 /*cooks.html*/
 .main-wrapper{
-    background-color: #EEE;
+    /*background-color: #EEE;*/
 }
 .cook-item{
     position: relative;
-    margin: 20px;
+    overflow: hidden;
+    /*margin: 10px;*/
+    padding: 20px;
+    border-bottom: 1px solid #e5e5e5;
 }
 .cook-avatar{
     position: relative;
+    /*float: left;*/
 }
 .cook-info h3{
-    margin: 10px 0px ;
+    margin: 10px 0px;
 }
 .cook-info{
     position: relative;
     display: inline-block;
     margin: 0px 20px;
+    /*float: left;*/
     vertical-align: top;
     height: 250px;
 
@@ -82,5 +87,30 @@ body {
 }
 
 .cook-operation{
+    position: relative;
+    /*display: inline-block;*/
+    /*vertical-align: middle;*/
+    top:30px;
+    /*left:200px;*/
+    right: 80px;
+    float: right;
+
+}
+.cook-operation a{
+    display: block;
+    margin: 20px 0;
+}
+.cook-price{
     display: inline-block;
+    /*float: left;*/
+    margin-left: 120px;
+    /*width: auto;*/
+}
+.cook-price .text-price{
+    text-align: center;
+    color: #F40;
+    font-size: 18px;
+}
+.cook-price .text-times{
+    color: #888;
 }
