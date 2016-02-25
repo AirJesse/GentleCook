@@ -1,5 +1,5 @@
 body {
-    background-color: #EEEEEE;
+    background-color: #FFF;
 }
 #homebg{
     height: 600px;
@@ -39,4 +39,48 @@ body {
 }
 .footer hr{
     border-top: 1px solid #cccccc;
+}
+
+
+/*cooks.html*/
+.main-wrapper{
+    background-color: #EEE;
+}
+.cook-item{
+    position: relative;
+    margin: 20px;
+}
+.cook-avatar{
+    position: relative;
+}
+.cook-info h3{
+    margin: 10px 0px ;
+}
+.cook-info{
+    position: relative;
+    display: inline-block;
+    margin: 0px 20px;
+    vertical-align: top;
+    height: 250px;
+
+}
+.cook-info span{
+    margin-right: 20px;
+}
+.cook-info p{
+    margin: 10px 0;
+}
+
+.acclaim{
+    font-size: 22px;
+}
+.cook-info .acclaim{
+    margin-top: 40px;
+}
+.motto{
+    font-weight: bolder;
+}
+
+.cook-operation{
+    display: inline-block;
 }
