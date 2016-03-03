@@ -1,0 +1,10 @@
+.side-nav{
+	margin-top:30px;
+	line-height: 60px;
+}
+.side-nav li{
+}
+.main-wrapper{
+	border-left:1px solid #e5e5e5 ;
+	min-height: 800px;
+}

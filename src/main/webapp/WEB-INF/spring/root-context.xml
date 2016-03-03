@@ -5,4 +5,33 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+		
+		<!-- 以下为数据库连接 -->
+	<!-- dataSource -->
+	<bean id="dataSource"
+		class = "org.apache.commons.dbcp.BasicDataSource"
+		>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/gentlecook"/>
+		<property name="username" value="wuli"/>
+		<property name="password" value="ljc1992"/>
+		<property name="initialSize" value="5"/>
+		<property name="maxActive" value="100"/>		
+	</bean>
+	<!-- session Factory -->
+	<bean id = "sessionFactory" class = "org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.foxlu.gentlecook"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="current_session_context_class">thread</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop> 
+			</props>
+		</property>	
+	</bean>
+	<!-- 以上为数据库连接 -->
+	
 </beans>
