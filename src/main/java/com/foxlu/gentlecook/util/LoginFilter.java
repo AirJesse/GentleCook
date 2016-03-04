@@ -34,7 +34,7 @@ public class LoginFilter implements Filter {
 		if(s==null||s.getAttribute("currentuser")==null){
 			logger.debug("请求被拦截（未登入）" + "---" +  (s==null?"null":s.getId()));
 			response.setStatus(403);
-			response.sendRedirect(Constant.appBase+"/index");
+			response.sendRedirect(Constant.appBase+"/register");
 			//chain.doFilter(request, response);
 			return;
 		}else{

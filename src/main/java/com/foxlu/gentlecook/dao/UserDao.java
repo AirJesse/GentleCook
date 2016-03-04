@@ -23,4 +23,11 @@ public class UserDao {
 		session.save(user);
 		session.close();
 	}
+	public User getUserByusername(String username){
+		Session session = sf.openSession();
+		String hql = "from User where username = :username";
+		User user = (User) session.createQuery(hql).setString("username", username).uniqueResult();
+		session.close();
+		return user;
+	}
 }

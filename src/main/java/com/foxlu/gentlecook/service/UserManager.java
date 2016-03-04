@@ -19,4 +19,8 @@ public class UserManager {
 	public void addUser(User user){
 		ud.addUser(user);
 	}
+	public boolean checkUsername(String username){
+		User user = ud.getUserByusername(username);
+		return user==null?false:true;
+	}
 }
