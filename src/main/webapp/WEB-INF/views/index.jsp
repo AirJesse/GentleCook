@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.foxlu.gentlecook.entity.User" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -79,8 +80,14 @@
 			<span class="big-title">君厨</span>
 			<h2>是谁来自山川湖海 却囿于昼夜 厨房与爱</h2>
 			<div id="hello-info">
-				<button class="btn btn-primary btn-lg">登入</button>
-				<button class="btn btn-primary btn-lg">注册</button>
+			<%if(session.getAttribute("currentUser") == null){
+				%>
+				<a href="login" class="btn btn-primary btn-lg">登入</a>
+				<a href="register" class="btn btn-primary btn-lg">注册</a>
+			<%}else{%>
+				<h1 class="text-danger">欢迎您</h1>
+				<h3 class="text-danger"><%= ((User)session.getAttribute("currentUser")).getUsername() %></h3>
+			<%} %>
 			</div>
 		</div>
 	</div>

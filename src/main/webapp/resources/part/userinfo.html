@@ -24,5 +24,13 @@
 	margin-left:100px;
     margin-top:30px;
 }
-
 </style>
+<script>
+    $.post('usercenter/showuserinfo.do',function(result,status){
+        console.log(result);
+        console.log(result.username);
+        if(status == 403){
+            location.href = "registor";
+        }
+    });
+</script>

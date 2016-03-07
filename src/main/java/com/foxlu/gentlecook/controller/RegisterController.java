@@ -3,6 +3,8 @@ package com.foxlu.gentlecook.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.digest.Md5Crypt;
 import org.slf4j.Logger;
@@ -47,7 +49,30 @@ public class RegisterController {
 		Map<String, String> result = new HashMap<>();
 		result.put("status", status==true?"success":"failed");
 		logger.debug("checkUsername --- " + result );
-		return result;
-		
+		return result;	
+	}
+	@RequestMapping("/login")
+	public String loginPage(){
+		return null;
+	}
+	@RequestMapping("/login.pub")
+	public String login(User user,HttpSession session){
+		logger.debug(user.toString());
+		User u = userManager.login(user);
+		if(u!=null){
+			session.setAttribute("currentUser", u);
+			return "successlogin";
+		}else{
+			return "failedlogin";
+		}
+	}
+	@RequestMapping("/logout.pub")
+	public String logout(HttpSession session){
+		if(session.getAttribute("currentUser")!=null){
+			session.removeAttribute("currentUser");
+			return "index";
+		}else{
+			return "index";
+		}
 	}
 }

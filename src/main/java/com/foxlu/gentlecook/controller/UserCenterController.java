@@ -20,7 +20,7 @@ public class UserCenterController {
 	@Autowired
 	private UserManager userManager;
 	
-	@RequestMapping("/showuserinfo")
+	@RequestMapping("/showuserinfo.do")
 	@ResponseBody
 	public User showUserInfo(HttpSession session){
 		return (User) session.getAttribute("currentUser");

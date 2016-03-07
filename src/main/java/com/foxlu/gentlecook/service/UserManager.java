@@ -23,4 +23,8 @@ public class UserManager {
 		User user = ud.getUserByusername(username);
 		return user==null?false:true;
 	}
+	public User login(User user){
+		User u = ud.login(user.getUsername(),user.getPassword());
+		return u;
+	}
 }

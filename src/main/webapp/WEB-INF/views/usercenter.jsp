@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.foxlu.gentlecook.entity.User" %>
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
@@ -21,7 +22,11 @@
         </div>
 
         <div class="main-wrapper col-md-10">
-            <p>哈哈哈</p>
+            <%if(session.getAttribute("currentUser")==null){
+            	response.sendRedirect("login");}else{%>
+            	<h2><%=((User)session.getAttribute("currentUser")).getUsername()%> 您好</h2>
+            	<p>欢迎进入个人中心。</p>
+            	<%} %>
         </div>
 
     </div>
