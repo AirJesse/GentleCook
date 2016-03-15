@@ -59,6 +59,9 @@ body {
 .cook-avatar{
     position: relative;
     /*float: left;*/
+    min-height: 250px;
+    min-width: 200px;
+    
 }
 .cook-info h3{
     margin: 10px 0px;
