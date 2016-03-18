@@ -38,6 +38,7 @@
     <%@include file="pub/footer.jsp"%>
     <script src="resources/js/jquery.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/dataformat.js"></script>
     <script>
         $("button").click(function(){
             var tar = $(this).attr("tar");

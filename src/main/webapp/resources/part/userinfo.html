@@ -26,11 +26,12 @@
 }
 </style>
 <script>
-    $.post('usercenter/showuserinfo.do',function(result,status){
+    $.post('usercenter/showuserinfo.do',function(result){
         console.log(result);
         console.log(result.username);
-        if(status == 403){
-            location.href = "registor";
-        }
+        $('#username').html(result.username);
+        $('#userEmail').html(result.email);
+        $('#userRegisterDate').html(new Date(result.registerDate).Format("yyyy-MM-dd hh:mm:ss"));
+        $('#userLastLoginTime').html(new Date(result.lastLogin).Format("yyyy-MM-dd hh:mm:ss"));
     });
 </script>
