@@ -50,4 +50,33 @@ public class CookDao {
 		s.getTransaction().commit();
 		s.close();
 	}
+	/**
+	 * 查询数据库计算好评率
+	 * @param id 厨师id
+	 * @return 好评率百分比数据部分，若数据库无记录，则返回-1
+	 */
+	public Double getAcclaimById(Long id) {
+		Session s = sf.openSession();
+		String hql1 = "select count(id) from Comment where cook.id=:cookId";
+		String hql2 = "select count(id) from Comment where cook.id=:cookId and type=true";
+		Long nums = (Long) s.createQuery(hql1).setLong("cookId", id).uniqueResult();
+		Long haoping =  (Long) s.createQuery(hql2).setLong("cookId", id).uniqueResult();
+		s.close();
+		if(nums ==null){
+			logger.error("出现错误！！！");
+			return (double) -1;
+		}else if(nums == 0){
+			return (double) -1;
+		}else{
+			return  ((double)haoping/(double)nums);
+		}
+		
+		
+	}
+	public Cook getCookById(Long id) {
+		Session s = sf.openSession();
+		Cook c = (Cook) s.get(Cook.class, id);
+		s.close();
+		return c;
+	}
 }

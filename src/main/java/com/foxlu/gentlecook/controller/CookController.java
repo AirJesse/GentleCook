@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.foxlu.gentlecook.dto.CookDto;
 import com.foxlu.gentlecook.entity.Comment;
 import com.foxlu.gentlecook.entity.Cook;
 import com.foxlu.gentlecook.entity.User;
@@ -27,10 +29,10 @@ public class CookController {
 	
 	@RequestMapping("/getcooks.pub")
 	@ResponseBody
-	public List<Cook> getCooks(){
-		List<Cook> result = cm.getAllCooks();
+	public List<CookDto> getCooks(){
+		List<CookDto> result = cm.getAllCookDtos();
 		logger.debug("浏览厨师: " + result.size() + "条");
-		return cm.getAllCooks();
+		return cm.getAllCookDtos();
 	}
 	@RequestMapping("/getcookcomments.pub")
 	@ResponseBody
@@ -55,4 +57,16 @@ public class CookController {
 		cm.saveComment(userId,id,content,type);
 		return "success";
 	}
+//	@RequestMapping("/order")
+//	public ModelAndView orderPage(Long cookId,HttpSession session){
+//		ModelAndView mav = new ModelAndView();
+//		if(session.getAttribute("currentUser")==null){
+//			mav.setViewName("register");
+//			return mav;
+//		}
+//		Cook c = cm.getCookById(cookId);
+//		mav.addObject("cook",c);
+//		mav.setViewName("ordercook");
+//		return mav;
+//	}
 }

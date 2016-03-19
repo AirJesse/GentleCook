@@ -71,6 +71,7 @@ body {
     /*float: left;*/
     vertical-align: top;
     height: 250px;
+    width: 300px;
 
 }
 .cook-info span{
@@ -88,13 +89,14 @@ body {
 }
 .motto{
     font-weight: bolder;
+    color: red;
 }
 
 .cook-operation{
     position: relative;
     /*display: inline-block;*/
     /*vertical-align: middle;*/
-    top:30px;
+    top:50px;
     /*left:200px;*/
     right: 80px;
     float: right;
@@ -107,7 +109,7 @@ body {
 .cook-price{
     display: inline-block;
     /*float: left;*/
-    margin-left: 120px;
+    margin-left: 20px;
     /*width: auto;*/
 }
 .cook-price .text-price{

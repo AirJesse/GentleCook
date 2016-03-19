@@ -20,7 +20,9 @@
 			display: inline-block;
 			right: 0;
 			float: right;
+			vertical-align: bottom;
 			margin-right: 20px;
+			padding-top:2px;
 		}
 		.comment-type{
 			display: inline-block;
@@ -53,6 +55,42 @@
 			<div class="list-wrapper">
 				<div id="cook-list" class="cook-list">
 					<!--样式模板，实际无用-->
+					<!--<div id="cook-model" class="cook-item hidden">-->
+						<!--<img src="resources/img/holder200x250.png" alt="" class="cook-avatar">-->
+						<!--<div class="cook-info">-->
+							<!--<h4>-->
+								<!--编号:<span name="id">35266</span>-->
+							<!--</h4>-->
+							<!--<h3>-->
+								<!--姓名：<span name="name">张三</span>-->
+							<!--</h3>-->
+							<!--<span>性别：<span name="gender">男</span></span> <span>年龄:<span-->
+								<!--name="age">22</span></span>-->
+							<!--<p>-->
+								<!--简介：<span name="motto" class="motto">留得青山在，不怕没柴烧</span>-->
+							<!--</p>-->
+							<!--<p>-->
+								<!--擅长：<span name="skill">家常菜 西北菜</span>-->
+							<!--</p>-->
+							<!--<p class="text-primary acclaim">-->
+								<!--好评率：<span name="acclaim">90%</span>-->
+							<!--</p>-->
+						<!--</div>-->
+						<!--<div class="cook-price">-->
+							<!--<p class="text-price">-->
+								<!--<Strong><span name="price">399</span>元/次</Strong>-->
+							<!--</p>-->
+							<!--<p class="text-times">-->
+								<!--预定次数：<span name="times">2</span>次-->
+							<!--</p>-->
+						<!--</div>-->
+						<!--<div class="cook-operation">-->
+							<!--<button name="comment" onclick="showComments(this)"  class="btn btn-primary btn-lg">查看评论</button>-->
+							<!--<a name="order" href="" class="btn btn-danger btn-lg">预约</a>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--以上为样式模板-->
+					<!--新样式模板-->
 					<div id="cook-model" class="cook-item hidden">
 						<img src="resources/img/holder200x250.png" alt="" class="cook-avatar">
 						<div class="cook-info">
@@ -62,11 +100,10 @@
 							<h3>
 								姓名：<span name="name">张三</span>
 							</h3>
-							<span>性别：<span name="gender">男</span></span> <span>年龄:<span
-								name="age">22</span></span>
 							<p>
-								简介：<span name="motto" class="motto">留得青山在，不怕没柴烧</span>
+								<span style="white-space: pre-line" name="motto" class="motto">留得青山在，不怕没柴烧</span>
 							</p>
+							<span>性别：<span name="gender">男</span></span>
 							<p>
 								擅长：<span name="skill">家常菜 西北菜</span>
 							</p>
@@ -76,7 +113,7 @@
 						</div>
 						<div class="cook-price">
 							<p class="text-price">
-								<Strong><span name="price">399</span>元/次</Strong>
+								<Strong><span name="price">399</span>元起/次</Strong>
 							</p>
 							<p class="text-times">
 								预定次数：<span name="times">2</span>次
@@ -87,7 +124,7 @@
 							<a name="order" href="" class="btn btn-danger btn-lg">预约</a>
 						</div>
 					</div>
-
+					<!---->
 				</div>
 			</div>
 		</div>
@@ -155,7 +192,7 @@
 				$model.find("span[name='times']").html(cook.times);
 				$model.find("button[name='comment']").attr("cook-id",cook.id);
 				$model.find("button[name='comment']").attr("cook-name",cook.name);
-				$model.find("a[name='order']").attr('href',"order?id="+cook.id);
+				$model.find("a[name='order']").attr('href',"ordercook?id="+cook.id);
 				$model.removeAttr("id");
 				$model.removeClass("hidden");
 				$("#cook-list").append($model);

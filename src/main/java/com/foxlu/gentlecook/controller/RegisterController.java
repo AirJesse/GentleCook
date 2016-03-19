@@ -56,6 +56,7 @@ public class RegisterController {
 		return null;
 	}
 	@RequestMapping("/login.pub")
+	@ResponseBody
 	public String login(User user,HttpSession session){
 		logger.debug(user.toString());
 		User u = userManager.login(user);

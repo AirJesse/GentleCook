@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
                 <button type="reset" class="btn btn-default btn-lg ">重置</button>
             </div>
         </form>
-        <div class="alert alert-success text-center hidden">注册成功</div>
+        <div class="alert alert-success text-center hidden">注册成功,正在跳转...</div>
     </div>
 
 
@@ -83,10 +83,10 @@ pageEncoding="UTF-8"%>
                         max: 20,
                         message: '长度必须处于4-20个字符质检'
                     },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_]+$/,
-                        message: '只能使用字母数字和下划线'
-                    },
+//                    regexp: {
+//                        regexp: /^[a-zA-Z0-9_]+$/,
+//                        message: '只能使用字母数字和下划线'
+//                    },
                     callback:{
                         message:'用户名已被占用',
                         callback:function(value){
