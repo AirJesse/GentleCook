@@ -46,7 +46,9 @@ public class HomeController {
 		return "cooks";
 	}
 	@RequestMapping("/usercenter")
-	public String userCenter(){
+	public String userCenter(String position,Model model){
+		if(position == null) position = "";
+		model.addAttribute("position",position);
 		return null;
 	}
 	

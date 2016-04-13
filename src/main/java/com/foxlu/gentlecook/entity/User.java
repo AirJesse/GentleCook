@@ -114,7 +114,7 @@ public class User {
 		this.qq = qq;
 	}
 	
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	@Cascade(value={CascadeType.ALL})
 	@JsonIgnore

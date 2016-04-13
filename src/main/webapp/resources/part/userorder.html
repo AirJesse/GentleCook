@@ -1,0 +1,98 @@
+<table id="order-table" class="table user-form-wrapper">
+    <tr id="table-header">
+        <th>序号</th>
+        <th>预约人</th>
+        <th>预约厨师</th>
+        <th>预约日期</th>
+        <th>目前状态</th>
+        <th>操作</th>
+    </tr>
+
+
+</table>
+
+<!--cancel Modal-->
+<div id="cancel-modal" class="modal fade">
+    <div id="modal-order-id" class="hidden"></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">确定取消</h4>
+            </div>
+            <div class="modal-body">
+                <p>您正在操作取消该订单，点击<code>确定取消</code>继续执行。</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="cancel-order" type="button" onclick="cancelOrder(this)" class="btn btn-danger">确定取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<style>
+    .user-form-wrapper{
+        margin-left:100px;
+        margin-top:30px;
+    }
+</style>
+<script>
+    $.post('usercenter/showuserorders.do',function(result){
+        console.log(result);
+        for(var index in result){
+            var item = result[index];
+            var user = item.user;
+            var cook = item.cook;
+            var status = item.status;
+            var $tr = $("<tr></tr>");
+
+            var operation = $("<td><button class='btn btn-info order-detail btn-sm'>详情</button>&nbsp;</td>")
+            if(status == "等待确认"){
+                $tr.addClass("warning");
+                operation.append("<button class='btn btn-danger order-cancel btn-sm'>取消</button>")
+            }
+            if(status == "准备服务"){
+                $tr.addClass("info");
+                operation.append("<button class='btn btn-danger order-cancel btn-sm'>取消</button>")
+            }
+            if(status == "已取消"){
+                $tr.addClass("active");
+                //operation.append("<button class='btn btn-danger order-cancel btn-sm'>取消</button>")
+            }
+            if(status == "已完成"){
+                $tr.addClass("success");
+                //operation.append("<button class='btn btn-danger order-cancel btn-sm'>取消</button>")
+            }
+            operation.find("button").attr("order",item.id);
+            $tr.append("<td>" + index + "</td>");
+            $tr.append("<td>" + item.trueName + "</td>");
+            $tr.append("<td>" + cook.name + "</td>");
+            $tr.append("<td>" + new Date(item.orderDate).Format("yyyy-MM-dd") + "</td>");
+            $tr.append("<td>" + status + "</td>");
+            $tr.append(operation);
+
+            $("#order-table").append($tr);
+        }
+
+        $("button.order-detail").click(function () {
+            alert("该功能未编写")
+        });
+
+        $("button.order-cancel").click(function () {
+            $("#modal-order-id").html($(this).attr("order"));
+            $("#cancel-modal").modal();
+        });
+
+    });
+
+    function cancelOrder(obj){
+        $.post("usercenter/cancelorder.do",{
+            orderId:$("#modal-order-id").html()
+        },function(){
+            $("#cancel-modal").modal("hide");
+            location.href = "usercenter?position=order";
+        });
+    }
+</script>

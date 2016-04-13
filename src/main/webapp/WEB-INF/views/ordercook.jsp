@@ -9,6 +9,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="resources/css/bootstrap-switch.css">
     <link rel="stylesheet" href="resources/css/app.css">
     <link rel="stylesheet" href="resources/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="resources/css/toastr.min.css">
     <style>
         .order-select-wrap{
             display: inline-block;
@@ -105,7 +106,7 @@ pageEncoding="UTF-8"%>
                             <label for="userAddress">服务地址：</label>
                             <input type="text"  class="form-control"  id="userAddress">
                         </div>
-                        <button id="submit-order" class="btn btn-primary btn-block disabled">提交预约(未编写完成)</button>
+                        <button id="submit-order" class="btn btn-primary btn-block">提交预约</button>
                     </form>
                 </div>
             </div>
@@ -124,11 +125,26 @@ pageEncoding="UTF-8"%>
 <script src="resources/js/dataformat.js"></script>
 <script src="resources/js/bootstrap-datetimepicker.min.js"></script>
 <script>
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "positionClass": "toast-bottom-full-width",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
     $('#serviceDate').datetimepicker({minView: "month", //选择日期后，不会再跳转去选择时分秒
             format: "yyyy-mm-dd", //选择日期后，文本框显示的日期格式
             autoclose:true //选择日期后自动关闭
     });
-    $('#serviceDate').val(new Date().Format("yyyy/MM/dd"));
+    $('#serviceDate').val(new Date().Format("yyyy-MM-dd"));
 
 
     var cookId = $("#cookId").html();
@@ -175,7 +191,35 @@ pageEncoding="UTF-8"%>
         $(".zongjia").find("span").html(total+"元");
     }
 
-    //todo
+    //提交预约
+    $("#submit-order").click(function(){
+        console.log(this);
+        var trueName = $("#trueName").val();
+        var phone = $("#userPhone").val();
+        var orderDate = $("#serviceDate").val();
+        var address =  $("#userAddress").val();
+        var type = $("#zl-foodsize").html();
+        $(this).addClass("disabled");
+        $.post('cook/submitorder.do',{
+            cookId:cookId,
+            trueName:trueName,
+            phone:phone,
+            orderDate:orderDate,
+            address:address,
+            daimai:daimai,
+            type:type,
+            price:total
+        },function(result){
+            console.log(result);
+            if(result == true){
+                toastr.success("预约成功，正在跳转...");
+                setTimeout(function(){
+                    location.href = "usercenter?position=order";
+                },2000)
+            }
+        });
+    });
+
 </script>
 </body>
 </html>

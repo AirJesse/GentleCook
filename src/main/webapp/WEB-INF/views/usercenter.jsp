@@ -16,7 +16,7 @@
         <div class="side-nav col-md-2">
             <ul class="list-unstyled">
                 <li><button class="btn btn-default btn-lg" tar="userinfo">个人信息</button></li>
-                <li><button class="btn btn-default btn-lg" tar="useroder">订单列表</button></li>
+                <li><button class="btn btn-default btn-lg" tar="userorder">订单列表</button></li>
                 <li><button class="btn btn-default btn-lg" tar="userpwd">密码设置</button></li>
             </ul>
         </div>
@@ -40,11 +40,16 @@
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/dataformat.js"></script>
     <script>
+        var position = "${position}";
+        console.log(position);
         $("button").click(function(){
             var tar = $(this).attr("tar");
             var path = "resources/part/" + tar + ".html";
             $(".main-wrapper").load(path);
         });
+        if(position == "order"){
+            $("button[tar='userorder']").click();
+        }
     </script>
 </body>
 </html>

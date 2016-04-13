@@ -19,6 +19,7 @@ import com.foxlu.gentlecook.entity.Comment;
 import com.foxlu.gentlecook.entity.Cook;
 import com.foxlu.gentlecook.entity.User;
 import com.foxlu.gentlecook.service.CookManager;
+import com.foxlu.gentlecook.service.UserManager;
 
 @Controller
 @RequestMapping("/cook")
@@ -26,6 +27,8 @@ public class CookController {
 	private static final Logger logger = LoggerFactory.getLogger(CookController.class);
 	@Autowired
 	private CookManager cm;
+	@Autowired
+	private UserManager um;
 	
 	@RequestMapping("/getcooks.pub")
 	@ResponseBody
@@ -69,4 +72,10 @@ public class CookController {
 //		mav.setViewName("ordercook");
 //		return mav;
 //	}
+	@RequestMapping("/submitorder.do")
+	@ResponseBody
+	public boolean submitOrder(Long cookId,String trueName,String phone,String orderDate,String address,Boolean daimai,String type,int price,HttpSession session){
+		Long userId = ((User)session.getAttribute("currentUser")).getId();
+		return um.submitOrder(userId,cookId, trueName, phone,orderDate, address, daimai, type, price);
+	}
 }

@@ -4,7 +4,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+
+
 import org.apache.commons.codec.digest.DigestUtils;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.slf4j.Logger;
@@ -60,5 +63,11 @@ public class UserDao {
 		s.close();
 		return u.getComments();
 		
+	}
+	public Set getUserOrders(Long userId) {
+		Session s = sf.openSession();
+		User u = (User) s.get(User.class, userId);
+		s.close();
+		return u.getOrders();
 	}
 }

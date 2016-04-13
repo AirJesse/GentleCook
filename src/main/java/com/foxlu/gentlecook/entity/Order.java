@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity(name="orders")
-public class Order {
+public class Order implements Comparable<Order> {
 	private Long id;
 	private User user;
+	private String trueName;
+	private String phone;
 	private Cook cook;
 	private Date createTime;
 	private Date orderDate;
@@ -18,6 +20,9 @@ public class Order {
 	private String type;
 	private Integer price;
 	private Boolean daimai;
+	private String status;
+	
+	
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -75,6 +80,28 @@ public class Order {
 	}
 	public void setDaimai(Boolean daimai) {
 		this.daimai = daimai;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getTrueName() {
+		return trueName;
+	}
+	public void setTrueName(String trueName) {
+		this.trueName = trueName;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	@Override
+	public int compareTo(Order o) {
+		return o.createTime.compareTo(this.createTime);
 	}
 	
 }
