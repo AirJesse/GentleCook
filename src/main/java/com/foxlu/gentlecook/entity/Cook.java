@@ -2,6 +2,7 @@ package com.foxlu.gentlecook.entity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,8 @@ public class Cook {
 	private Integer times;
 	
 	//one to many
-	private List<Comment> comments;
+	private Set<Comment> comments;
+	private Set<Order> orders;
 	
 	@Id
 	@GeneratedValue
@@ -98,11 +100,21 @@ public class Cook {
 	@JoinColumn(name="cook_id")
 	@Cascade(value={CascadeType.ALL})
 	@JsonIgnore
-	public List<Comment> getComments() {
+	public Set<Comment> getComments() {
 		return comments;
 	}
-	public void setComments(List<Comment> comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
+	}
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name="cook_id")
+	@Cascade(value={CascadeType.ALL})
+	@JsonIgnore
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	
 	

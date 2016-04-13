@@ -2,6 +2,7 @@ package com.foxlu.gentlecook.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.SessionFactory;
@@ -53,7 +54,7 @@ public class UserDao {
 		return user;
 		
 	}
-	public List getCommentsByUserId(Long id) {
+	public Set getCommentsByUserId(Long id) {
 		Session s = sf.openSession();
 		User u = (User) s.get(User.class, id);
 		s.close();

@@ -1,6 +1,7 @@
 package com.foxlu.gentlecook.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class UserManager {
 		User u = ud.login(user.getUsername(),user.getPassword());
 		return u;
 	}
-	public List getCommentsByUserId(Long id) {
+	public Set getCommentsByUserId(Long id) {
 		return ud.getCommentsByUserId(id);
 	}
 }

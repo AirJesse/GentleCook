@@ -2,6 +2,7 @@ package com.foxlu.gentlecook.entity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,9 +22,14 @@ public class User {
 	private String username;
 	private String password;
 	private String Email;
+	private String trueName;
+	private String city;
+	private String phone;
+	private String qq;
 	private Date registerDate;
 	private Date lastLogin;
-	private List<Comment> comments;
+	private Set<Comment> comments;
+	private Set<Order> orders;
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -77,11 +83,46 @@ public class User {
 	@JoinColumn(name="user_id")
 	@Cascade(value={CascadeType.ALL})
 	@JsonIgnore
-	public List<Comment> getComments() {
+	public Set<Comment> getComments() {
 		return comments;
 	}
-	public void setComments(List<Comment> comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
+	}
+	public String getTrueName() {
+		return trueName;
+	}
+	public void setTrueName(String trueName) {
+		this.trueName = trueName;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+	
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	@Cascade(value={CascadeType.ALL})
+	@JsonIgnore
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	
 	

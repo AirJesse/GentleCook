@@ -124,7 +124,7 @@ pageEncoding="UTF-8"%>
 <script src="resources/js/dataformat.js"></script>
 <script src="resources/js/bootstrap-datetimepicker.min.js"></script>
 <script>
-    $('#serviceDate').datetimepicker(　{minView: "month", //选择日期后，不会再跳转去选择时分秒
+    $('#serviceDate').datetimepicker({minView: "month", //选择日期后，不会再跳转去选择时分秒
             format: "yyyy-mm-dd", //选择日期后，文本框显示的日期格式
             autoclose:true //选择日期后自动关闭
     });
